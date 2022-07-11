@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -26,8 +28,8 @@ public class IOReader {
                 String lastName = dataArray[4];
                 char gender = dataArray[5].charAt(0);
                 String email = dataArray[6];
-                String dateOfBirth = dataArray[7];
-                String dateOfJoining = dataArray[8];
+                Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(dataArray[7]);
+                Date dateOfJoining = new SimpleDateFormat("dd/MM/yyyy").parse(dataArray[8]);
                 int salary = Integer.parseInt(dataArray[9]);
 
                 file.put(employeeID, new Employee(employeeID, namePrefix, firstName, middleInitial, lastName, gender, email, dateOfBirth, dateOfJoining, salary));
@@ -37,9 +39,10 @@ public class IOReader {
             e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
         return file;
     }
-
 }
 

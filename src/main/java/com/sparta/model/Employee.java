@@ -1,9 +1,11 @@
 package com.sparta.model;
 
+import java.util.Date;
+
 public class Employee {
     private int employeeID;
 
-    public Employee(int employeeID, String namePrefix, String firstName, char middleInitial, String lastName, char gender, String email, String dateOfBirth, String dateOfJoining, int salary) {
+    public Employee(int employeeID, String namePrefix, String firstName, char middleInitial, String lastName, char gender, String email, Date dateOfBirth, Date dateOfJoining, int salary) {
         this.employeeID = employeeID;
         this.namePrefix = namePrefix;
         this.firstName = firstName;
@@ -22,8 +24,8 @@ public class Employee {
     private String lastName;
     private char gender;
     private String email;
-    private String dateOfBirth;
-    private String dateOfJoining;
+    private Date dateOfBirth;
+    private Date dateOfJoining;
     private int salary;
 
     public int getEmployeeID() {
@@ -54,11 +56,11 @@ public class Employee {
         return email;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public String getDateOfJoining() {
+    public Date getDateOfJoining() {
         return dateOfJoining;
     }
 
