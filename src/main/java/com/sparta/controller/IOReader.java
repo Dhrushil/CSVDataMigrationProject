@@ -2,10 +2,7 @@ package com.sparta.controller;
 
 import com.sparta.model.Employee;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +13,7 @@ public class IOReader {
 
         HashMap<Integer, Employee> file = new HashMap<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/csv/EmployeeRecords1.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
             reader.readLine(); // this will read the first line
             String data=null;
             while ((data = reader.readLine()) != null){ //loop will run from 2nd line
@@ -43,6 +40,19 @@ public class IOReader {
             throw new RuntimeException(e);
         }
         return file;
+    }
+    public static void writeFile(String filename, HashMap<Integer, Employee> hash){
+        try {
+            String line;
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+
+                writer.write(String.valueOf(hash));
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
 
