@@ -30,12 +30,22 @@ public class ReadWriteCon {
 
     public void table(String file) {
         Connection conn = RemoteConnection.getConn();
-        try {
+        HashMap<Integer,Employee> map = new HashMap<>();
+        map = readingRecords1();
 
-            HashMap<Integer,Employee> map = new HashMap<>();
-            map = readingRecords1();
+        try {
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("");
+            statement.
+            ResultSet rs = statement.execute("CREATE TABLE(Emp_ID int," +
+                    "Name_Prefix varchar(50)," +
+                    "First_Name varchar(50)," +
+                    "Middle_Initial varchar(50)," +
+                    "Last_Name varchar(50)," +
+                    "Gender varchar(50)," +
+                    "E-Mail varchar(50)," +
+                    "Date_of_Birth DATE," +
+                    "Date_of_Joining DATE," +
+                    "Salary int");
 
 
         } catch (SQLException e) {
