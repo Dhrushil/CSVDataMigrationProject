@@ -1,6 +1,7 @@
 package com.sparta.controller;
 
 import com.sparta.model.Employee;
+import com.sparta.view.UserInterfaceView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -29,6 +30,8 @@ public class CleaningController {
     public int getNumBadGender() {
         return numBadGender;
     }
+
+    UserInterfaceView userInterface = new UserInterfaceView();
 
     public HashMap<Integer, Employee> cleanFile() throws ParseException {
         HashMap<Integer, Employee> clean = IOReader.readFile("src/main/resources/csv/EmployeeRecords2.csv");
@@ -59,7 +62,7 @@ public class CleaningController {
         for (Integer x : elementsToRemove) {
             clean.remove(x);
         }
-
+        userInterface.displayReading(clean, (numBadDOB+numBadEmails+numBadGender+numBadDOJ));
         return clean;
 
     }
