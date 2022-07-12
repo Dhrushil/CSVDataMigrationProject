@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class RemoteConnection implements AutoCloseable {
-
+//
     public static Connection conn = null;
 
     public static Connection getConn(){
