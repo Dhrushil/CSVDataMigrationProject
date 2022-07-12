@@ -3,6 +3,7 @@ package com.sparta;
 import com.sparta.controller.CleaningController;
 import com.sparta.model.Employee;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +16,6 @@ public class Main {
 
         HashMap<Integer, Employee> test = clean.cleanFile();
 
-        System.out.println(test.get(338634).getDateOfBirth());
+        System.out.println(test.size());
     }
 }
