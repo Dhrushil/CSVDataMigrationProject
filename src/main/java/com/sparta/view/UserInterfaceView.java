@@ -1,10 +1,15 @@
 package com.sparta.view;
 
+import com.sparta.model.Employee;
+
+import java.util.HashMap;
+
 public class UserInterfaceView {
-    public void displayReading() {
-        System.out.println("Clean records = ");
-        System.out.println("Duplicates found = ");
-        System.out.println("Record with missing fields = ");
-        //System.out.println("Records with questionable fields = ");
+    public void displayReading(HashMap<Integer, Employee> clean, int invalidRecords) {
+        System.out.println("Number of clean records = " + clean.size());
+
+        System.out.println("Number of invalid records found = " + invalidRecords);
+
+        //System.out.println("Number of duplicate records = ");
     }
 }
