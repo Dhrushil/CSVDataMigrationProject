@@ -25,8 +25,8 @@ public class IOReader {
                 String lastName = dataArray[4];
                 char gender = dataArray[5].charAt(0);
                 String email = dataArray[6];
-                Date dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(dataArray[7]);
-                Date dateOfJoining = new SimpleDateFormat("dd/MM/yyyy").parse(dataArray[8]);
+                Date dateOfBirth = new SimpleDateFormat("MM/dd/yyyy").parse(dataArray[7]);
+                Date dateOfJoining = new SimpleDateFormat("MM/dd/yyyy").parse(dataArray[8]);
                 int salary = Integer.parseInt(dataArray[9]);
 
                 file.put(employeeID, new Employee(employeeID, namePrefix, firstName, middleInitial, lastName, gender, email, dateOfBirth, dateOfJoining, salary));
