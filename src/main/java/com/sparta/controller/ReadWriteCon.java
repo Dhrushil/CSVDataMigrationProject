@@ -50,6 +50,9 @@ public class ReadWriteCon {
         try {
             Statement statement = conn.createStatement();
             statement.execute(createtable);
+            for(Object o:map.keySet()){
+               statement.execute("INSERT INTO Employee_Data ") map.get(o).get
+            }
 
 
 
