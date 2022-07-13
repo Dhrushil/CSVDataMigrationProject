@@ -19,7 +19,6 @@ public class ReadWriteCon {
             "Date_of_Birth DATE," +
             "Date_of_Joining DATE," +
             "Salary INTEGER";
-    private static final String SELECT_USER_BY_ID = "select * from users where Emp_ID = ?";
 
 
     public HashMap<Integer,Employee> readingRecords1() {
@@ -62,35 +61,5 @@ public class ReadWriteCon {
     }
 
 
-    public Employee getEmployeeByID(int id) {
-        Employee employee = null;
-        try(Connection conn = RemoteConnection.getConn();
-            PreparedStatement statement = conn.prepareStatement(SELECT_USER_BY_ID)) {
-            statement.setInt(1,id);
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) {
-
-                int employeeID = rs.getInt("Emp_ID");
-                String namePrefix = rs.getString("Name_Prefix");
-                String firstName = rs.getString("First_Name");
-                String middleInitial = rs.getString("Middle_Initial");
-                String lastName = rs.getString("Last_Name");
-                String gender = rs.getString("Gender");
-                String email = rs.getString("E-Mail");
-                Date dateOfBirth = rs.getDate("Date_of_Birth");
-                Date dateOfJoining = rs.getDate("Date_of_Joining");
-                int salary = rs.getInt("Salary");
-
-                employee = new Employee(employeeID, namePrefix, firstName, middleInitial.charAt(0), lastName, gender.charAt(0), email, dateOfBirth, dateOfJoining, salary);
-            }
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return employee;
-    }
 }
 
