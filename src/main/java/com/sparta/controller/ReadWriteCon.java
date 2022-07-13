@@ -108,7 +108,7 @@ public class ReadWriteCon {
                 statement.setString(6, String.valueOf(map.get(o).getGender()));
                 statement.setString(7, map.get(o).getEmail());
                 statement.setDate(8, new java.sql.Date(map.get(o).getDateOfBirth().getTime()));
-                statement.setDate(9, new java.sql.Date(map.get(o).getDateOfBirth().getTime()));
+                statement.setDate(9, new java.sql.Date(map.get(o).getDateOfJoining().getTime()));
                 statement.setInt(10, map.get(o).getSalary());
                 statement.executeUpdate();
 
