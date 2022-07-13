@@ -33,8 +33,8 @@ public class CleaningController {
 
     UserInterfaceView userInterface = new UserInterfaceView();
 
-    public HashMap<Integer, Employee> cleanFile() throws ParseException {
-        HashMap<Integer, Employee> clean = IOReader.readFile("src/main/resources/csv/EmployeeRecords2.csv");
+    public HashMap<Integer, Employee> cleanFile(String file) throws ParseException {
+        HashMap<Integer, Employee> clean = IOReader.readFile(file);
         List<Integer> elementsToRemove = new ArrayList<>();
         for (Integer key : clean.keySet()) {
             if (!isDateValid(clean.get(key).getDateOfBirth())) {
