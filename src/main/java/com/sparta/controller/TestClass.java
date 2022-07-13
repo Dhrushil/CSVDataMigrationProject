@@ -39,9 +39,7 @@ class TestClass {
 
     @Test
     void writeFile() {
-<<<<<<< Updated upstream
 
-=======
         HashMap<Integer, Employee> testMap = IOReader.readFile("src/main/resources/csv/EmployeeRecords1.csv");
         IOReader.writeFile("newTempFile.csv", testMap);
         Assertions.assertTrue(new File("newTempFile.csv").isFile()); //check if new file exists
@@ -59,6 +57,6 @@ class TestClass {
         Assertions.assertEquals(198429, newMap.get(198429).getEmployeeID());
         Assertions.assertEquals(69294, newMap.get(198429).getSalary());
         Assertions.assertEquals("Wed Jan 02 00:00:00 GMT 2008", newMap.get(198429).getDateOfJoining().toString());*/
->>>>>>> Stashed changes
+
     }
 }
