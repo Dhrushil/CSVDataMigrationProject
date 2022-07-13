@@ -3,6 +3,7 @@ package com.sparta;
 import com.sparta.controller.CleaningController;
 import com.sparta.controller.ReadWriteCon;
 import com.sparta.model.Employee;
+import com.sparta.view.UserInterfaceView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,7 +16,9 @@ public class Main {
 
         ReadWriteCon maincon = new ReadWriteCon();
         CleaningController clean = new CleaningController();
-        HashMap<Integer, Employee> test = clean.cleanFile();
+        UserInterfaceView ui = new UserInterfaceView();
+        String fileName = ui.display();
+        HashMap<Integer, Employee> test = clean.cleanFile(fileName);
         maincon.table();
         maincon.updateTable(test);
     }

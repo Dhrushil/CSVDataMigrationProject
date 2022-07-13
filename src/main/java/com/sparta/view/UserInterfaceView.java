@@ -9,11 +9,12 @@ import java.util.Scanner;
 public class UserInterfaceView {
     ReadWriteCon readWrite = new ReadWriteCon();
     Scanner scanner = new Scanner(System.in);
-    public void display() {
+    public String display() {
+        String fileName = "";
         System.out.println("Would you like to create a new table? y to continue");
         String choice = scanner.next();
 
-        while (choice.equals("y"))
+        if (choice.equals("y"))
         {
             readWrite.table();
 
@@ -21,11 +22,12 @@ public class UserInterfaceView {
             int record = scanner.nextInt();
 
             switch (record) {
-                case 1 -> readWrite.updateTable(readWrite.readingRecords1());
-                case 2 -> readWrite.updateTable(readWrite.readingRecords2());
-                case 3 -> readWrite.updateTable(readWrite.readingRecordsLarge());
+                case 1 -> fileName="src/main/resources/csv/EmployeeRecords1.csv";
+                case 2 -> fileName="src/main/resources/csv/EmployeeRecords2.csv";
+                case 3 -> fileName="src/main/resources/csv/EmployeeRecordsLarge.csv";
             }
         }
+        return fileName;
     }
 
     public void displayReading(HashMap<Integer, Employee> clean, int invalidRecords) {
