@@ -3,10 +3,7 @@ package com.sparta.controller;
 import com.sparta.DatabaseConnection.RemoteConnection;
 import com.sparta.model.Employee;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.HashMap;
 
 public class ReadWriteCon {
@@ -22,6 +19,8 @@ public class ReadWriteCon {
             "Date_of_Birth DATE," +
             "Date_of_Joining DATE," +
             "Salary INTEGER";
+
+    public static final String insertqueary = "INSERT INTO Employee_Data (Emp_ID,Name_Prefix,First_Name,Middle_Initial,Last_Name,Gender,E-Mail,Date_of_Birth,Date_of_Joining,Salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)"
 
 
     public HashMap<Integer,Employee> readingRecords1() {
@@ -42,25 +41,41 @@ public class ReadWriteCon {
         return map;
     }
 
-    public void table(String file) {
+    public void createTable() {
         Connection conn = RemoteConnection.getConn();
-        HashMap<Integer,Employee> map = new HashMap<>();
-        map = readingRecords1();
-
         try {
-            Statement statement = conn.createStatement();
-            statement.execute(createtable);
-            for(Object o:map.keySet()){
-               statement.execute("INSERT INTO Employee_Data ") map.get(o).get
-            }
-
-
+            PreparedStatement statement = conn.prepareStatement(createtable);
+            statement.executeQuery();
+            conn.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
 
+    }
+
+    public void updateTable(HashMap<Integer,Employee> map){
+        Connection conn = RemoteConnection.getConn();
+        try {
+            PreparedStatement statement = conn.prepareStatement(insertqueary);
+            for(Integer o: map.keySet()){
+                statement.setInt(1,map.get(o).getEmployeeID());
+                statement.setString(2,map.get(o).getNamePrefix());
+                statement.setString(3,map.get(o).getFirstName());
+                statement.setString(4,String.valueOf(map.get(o).getMiddleInitial()));
+                statement.setString(5,map.get(o).getLastName());
+                statement.setString(6,String.valueOf(map.get(o).getGender()));
+                statement.setString(7,map.get(o).getEmail());
+                statement.setDate(8, (Date) map.get(o).getDateOfBirth());
+                statement.setDate(9,(Date) map.get(o).getDateOfJoining());
+                statement.setInt(10,map.get(o).getSalary());
+            }
+            conn.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
