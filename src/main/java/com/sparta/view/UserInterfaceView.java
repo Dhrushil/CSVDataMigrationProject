@@ -9,11 +9,7 @@ import java.util.Scanner;
 public class UserInterfaceView {
     ReadWriteCon readWrite = new ReadWriteCon();
     Scanner scanner = new Scanner(System.in);
-    public void displayReading(HashMap<Integer, Employee> clean, int invalidRecords) {
-        System.out.println("Number of clean records = " + clean.size());
-
-        System.out.println("Number of invalid records found = " + invalidRecords);
-
+    public void display() {
         System.out.println("Would you like to create a new table? y to continue");
         String choice = scanner.next();
 
@@ -21,7 +17,7 @@ public class UserInterfaceView {
         {
             readWrite.table();
 
-            System.out.println("Which record would you like to view? 1, 2 or 3");
+            System.out.println("Please enter a record you would like to be cleaned. 1, 2 or 3");
             int record = scanner.nextInt();
 
             switch (record) {
@@ -30,5 +26,11 @@ public class UserInterfaceView {
                 case 3 -> readWrite.updateTable(readWrite.readingRecordsLarge());
             }
         }
+    }
+
+    public void displayReading(HashMap<Integer, Employee> clean, int invalidRecords) {
+        System.out.println("Number of clean records = " + clean.size());
+
+        System.out.println("Number of invalid records found = " + invalidRecords);
     }
 }
