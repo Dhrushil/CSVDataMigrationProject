@@ -25,7 +25,7 @@ public class ReadWriteCon {
     private static final String SELECT_USER_BY_ID = "select * from Employee_Data where employeeID = ?";
 
 
-    private static final String insertqueary = "INSERT INTO Employee_Data (employeeID,namePrefix,firstName,middleInitial,lastName,gender,email,dateOfBirth,dateOfJoining,salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private static final String insertqueary = "INSERT INTO Employee_Data (employeeID,namePrefix,firstName,middleInitial,lastName,gender,email,dateOfBirth,dateOfJoining,salary) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
     private static final String tablecheck = "DROP TABLE IF EXISTS Employee_Data";
 
@@ -55,7 +55,7 @@ public class ReadWriteCon {
             statement1.executeUpdate();
             statement2.executeUpdate();
 
-            conn.close();
+            //conn.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -94,23 +94,25 @@ public class ReadWriteCon {
         return employee;
     }
     public void updateTable(HashMap<Integer,Employee> map){
-        Connection conn = RemoteConnection.getConn();
-        try {
-            PreparedStatement statement = conn.prepareStatement(insertqueary);
-            for(Integer o: map.keySet()){
-                statement.setInt(1,map.get(o).getEmployeeID());
-                statement.setString(2,map.get(o).getNamePrefix());
-                statement.setString(3,map.get(o).getFirstName());
-                statement.setString(4,String.valueOf(map.get(o).getMiddleInitial()));
-                statement.setString(5,map.get(o).getLastName());
-                statement.setString(6,String.valueOf(map.get(o).getGender()));
-                statement.setString(7,map.get(o).getEmail());
-                statement.setDate(8, (Date) map.get(o).getDateOfBirth());
-                statement.setDate(9,(Date) map.get(o).getDateOfJoining());
-                statement.setInt(10,map.get(o).getSalary());
-            }
-            conn.close();
 
+        try(Connection conn = RemoteConnection.getConn();
+            PreparedStatement statement = conn.prepareStatement(insertqueary)) {
+
+            for(Integer o: map.keySet()) {
+
+                statement.setInt(1, map.get(o).getEmployeeID());
+                statement.setString(2, map.get(o).getNamePrefix());
+                statement.setString(3, map.get(o).getFirstName());
+                statement.setString(4, String.valueOf(map.get(o).getMiddleInitial()));
+                statement.setString(5, map.get(o).getLastName());
+                statement.setString(6, String.valueOf(map.get(o).getGender()));
+                statement.setString(7, map.get(o).getEmail());
+                statement.setDate(8, new java.sql.Date(map.get(o).getDateOfBirth().getTime()));
+                statement.setDate(9, new java.sql.Date(map.get(o).getDateOfBirth().getTime()));
+                statement.setInt(10, map.get(o).getSalary());
+                statement.executeUpdate();
+
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

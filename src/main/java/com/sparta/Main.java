@@ -14,7 +14,9 @@ public class Main {
     public static void main(String[] args) throws ParseException {
 
         ReadWriteCon maincon = new ReadWriteCon();
-
+        CleaningController clean = new CleaningController();
+        HashMap<Integer, Employee> test = clean.cleanFile();
         maincon.table();
+        maincon.updateTable(test);
     }
 }
