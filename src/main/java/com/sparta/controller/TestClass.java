@@ -1,6 +1,7 @@
 package com.sparta.controller;
 
 import com.sparta.model.Employee;
+import com.sparta.view.UserInterfaceView;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,5 +59,21 @@ class TestClass {
         Assertions.assertEquals(69294, newMap.get(198429).getSalary());
         Assertions.assertEquals("Wed Jan 02 00:00:00 GMT 2008", newMap.get(198429).getDateOfJoining().toString());*/
 
+    }
+
+    @Test
+    void testUI(){
+        UserInterfaceView ui = new UserInterfaceView();
+        HashMap<Integer, Employee> testMap = IOReader.readFile("src/main/resources/csv/EmployeeRecords1.csv");
+
+        //Assertions.assertEquals(9943, );
+        ui.displayReading(testMap, 0);
+    }
+
+    @Test
+    void testGetEmployee(){
+        ReadWriteCon rWC = new ReadWriteCon();
+        Employee employee = rWC.getEmployeeByID(198429);
+        System.out.println(employee.getSalary());
     }
 }
