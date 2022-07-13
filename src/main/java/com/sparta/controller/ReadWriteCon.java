@@ -8,21 +8,24 @@ import java.util.HashMap;
 
 public class ReadWriteCon {
 
-    public static final String createtable = "CREATE TABLE Employee_Data " +
-            "(Emp_ID INTEGER not NULL," +
-            "Name_Prefix varchar(50)," +
-            "First_Name varchar(50)," +
-            "Middle_Initial varchar(50)," +
-            "Last_Name varchar(50)," +
-            "Gender varchar(50)," +
-            "E-Mail varchar(50)," +
-            "Date_of_Birth DATE," +
-            "Date_of_Joining DATE," +
-            "Salary INTEGER";
-    private static final String SELECT_USER_BY_ID = "select * from users where Emp_ID = ?";
 
 
-    private static final String insertqueary = "INSERT INTO Employee_Data (Emp_ID,Name_Prefix,First_Name,Middle_Initial,Last_Name,Gender,E-Mail,Date_of_Birth,Date_of_Joining,Salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private static final String createtable = "CREATE TABLE Employee_Data (\n" +
+            "    employeeID int,\n" +
+            "    namePrefix varchar(10),\n" +
+            "    firstName varchar(50),\n" +
+            "    middleInitial varchar(1),\n" +
+            "    lastName varchar(50), \n" +
+            "    gender varchar(1),\n" +
+            "    email varchar(255), \n" +
+            "    dateOfBirth date,\n" +
+            "    dateOfJoining date, \n" +
+            "    salary int\n" +
+            ")";
+    private static final String SELECT_USER_BY_ID = "select * from Employee_Data where employeeID = ?";
+
+
+    private static final String insertqueary = "INSERT INTO Employee_Data (employeeID,namePrefix,firstName,middleInitial,lastName,gender,email,dateOfBirth,dateOfJoining,salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
     private static final String tablecheck = "DROP TABLE IF EXISTS Employee_Data";
 
@@ -69,16 +72,16 @@ public class ReadWriteCon {
 
             while (rs.next()) {
 
-                int employeeID = rs.getInt("Emp_ID");
-                String namePrefix = rs.getString("Name_Prefix");
-                String firstName = rs.getString("First_Name");
-                String middleInitial = rs.getString("Middle_Initial");
-                String lastName = rs.getString("Last_Name");
-                String gender = rs.getString("Gender");
-                String email = rs.getString("E-Mail");
-                Date dateOfBirth = rs.getDate("Date_of_Birth");
-                Date dateOfJoining = rs.getDate("Date_of_Joining");
-                int salary = rs.getInt("Salary");
+                int employeeID = rs.getInt("employeeID");
+                String namePrefix = rs.getString("namePrefix");
+                String firstName = rs.getString("firstName");
+                String middleInitial = rs.getString("middleInitial");
+                String lastName = rs.getString("lastName");
+                String gender = rs.getString("gender");
+                String email = rs.getString("email");
+                Date dateOfBirth = rs.getDate("dateOfBirth");
+                Date dateOfJoining = rs.getDate("dateOfJoining");
+                int salary = rs.getInt("salary");
 
                 employee = new Employee(employeeID, namePrefix, firstName, middleInitial.charAt(0), lastName, gender.charAt(0), email, dateOfBirth, dateOfJoining, salary);
             }
