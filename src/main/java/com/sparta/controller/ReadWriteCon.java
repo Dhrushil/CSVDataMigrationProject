@@ -42,7 +42,7 @@ public class ReadWriteCon {
         return map;
     }
 
-    public void table(String file) {
+    public void table() {
         Connection conn = RemoteConnection.getConn();
         try {
             PreparedStatement statement = conn.prepareStatement(insertqueary);
