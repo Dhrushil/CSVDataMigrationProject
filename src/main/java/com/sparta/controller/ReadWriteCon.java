@@ -20,7 +20,7 @@ public class ReadWriteCon {
             "Date_of_Joining DATE," +
             "Salary INTEGER";
 
-    public static final String insertqueary = "INSERT INTO Employee_Data (Emp_ID,Name_Prefix,First_Name,Middle_Initial,Last_Name,Gender,E-Mail,Date_of_Birth,Date_of_Joining,Salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)"
+    public static final String insertqueary = "INSERT INTO Employee_Data (Emp_ID,Name_Prefix,First_Name,Middle_Initial,Last_Name,Gender,E-Mail,Date_of_Birth,Date_of_Joining,Salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
 
     public HashMap<Integer,Employee> readingRecords1() {
