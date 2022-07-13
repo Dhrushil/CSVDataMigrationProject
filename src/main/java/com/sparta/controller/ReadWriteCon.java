@@ -21,6 +21,8 @@ public class ReadWriteCon {
             "Salary INTEGER";
     private static final String SELECT_USER_BY_ID = "select * from users where Emp_ID = ?";
 
+    public static final String insertqueary = "INSERT INTO Employee_Data (Emp_ID,Name_Prefix,First_Name,Middle_Initial,Last_Name,Gender,E-Mail,Date_of_Birth,Date_of_Joining,Salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
 
     public HashMap<Integer,Employee> readingRecords1() {
         HashMap<Integer,Employee> map = new HashMap<>();
