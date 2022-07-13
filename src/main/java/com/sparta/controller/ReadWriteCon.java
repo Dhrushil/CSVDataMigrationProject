@@ -44,23 +44,13 @@ public class ReadWriteCon {
 
     public void table(String file) {
         Connection conn = RemoteConnection.getConn();
-        HashMap<Integer,Employee> map = new HashMap<>();
-        map = readingRecords1();
-
         try {
-            Statement statement = conn.createStatement();
-            statement.execute(createtable);
-            for(Object o:map.keySet()){
-               statement.execute("INSERT INTO Employee_Data ") map.get(o).get
-            }
-
-
+            PreparedStatement statement = conn.prepareStatement(insertqueary);
+            statement.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
 
