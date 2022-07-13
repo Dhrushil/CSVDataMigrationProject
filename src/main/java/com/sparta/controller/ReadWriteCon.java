@@ -94,5 +94,27 @@ public class ReadWriteCon {
 
         return employee;
     }
+    public void updateTable(HashMap<Integer,Employee> map){
+        Connection conn = RemoteConnection.getConn();
+        try {
+            PreparedStatement statement = conn.prepareStatement(insertqueary);
+            for(Integer o: map.keySet()){
+                statement.setInt(1,map.get(o).getEmployeeID());
+                statement.setString(2,map.get(o).getNamePrefix());
+                statement.setString(3,map.get(o).getFirstName());
+                statement.setString(4,String.valueOf(map.get(o).getMiddleInitial()));
+                statement.setString(5,map.get(o).getLastName());
+                statement.setString(6,String.valueOf(map.get(o).getGender()));
+                statement.setString(7,map.get(o).getEmail());
+                statement.setDate(8, (Date) map.get(o).getDateOfBirth());
+                statement.setDate(9,(Date) map.get(o).getDateOfJoining());
+                statement.setInt(10,map.get(o).getSalary());
+            }
+            conn.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
