@@ -21,8 +21,10 @@ public class ReadWriteCon {
             "Salary INTEGER";
     private static final String SELECT_USER_BY_ID = "select * from users where Emp_ID = ?";
 
-    public static final String insertqueary = "INSERT INTO Employee_Data (Emp_ID,Name_Prefix,First_Name,Middle_Initial,Last_Name,Gender,E-Mail,Date_of_Birth,Date_of_Joining,Salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
+    private static final String insertqueary = "INSERT INTO Employee_Data (Emp_ID,Name_Prefix,First_Name,Middle_Initial,Last_Name,Gender,E-Mail,Date_of_Birth,Date_of_Joining,Salary INTEGER) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+    private static final String tablecheck = "DROP TABLE IF EXISTS Employee_Data";
 
     public HashMap<Integer,Employee> readingRecords1() {
         HashMap<Integer,Employee> map = new HashMap<>();
@@ -42,11 +44,15 @@ public class ReadWriteCon {
         return map;
     }
 
-    public void table(String file) {
+    public void table() {
         Connection conn = RemoteConnection.getConn();
         try {
-            PreparedStatement statement = conn.prepareStatement(insertqueary);
-            statement.executeUpdate();
+            PreparedStatement statement1 = conn.prepareStatement(tablecheck);
+            PreparedStatement statement2 = conn.prepareStatement(createtable);
+            statement1.executeUpdate();
+            statement2.executeUpdate();
+
+            conn.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
