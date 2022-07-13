@@ -62,7 +62,7 @@ public class CleaningController {
         for (Integer x : elementsToRemove) {
             clean.remove(x);
         }
-        //userInterface.displayReading(clean, (numBadDOB+numBadEmails+numBadGender+numBadDOJ));
+        userInterface.displayReading(clean, (numBadDOB+numBadEmails+numBadGender+numBadDOJ));
         return clean;
 
     }
