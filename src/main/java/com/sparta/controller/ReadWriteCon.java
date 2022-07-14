@@ -65,8 +65,9 @@ public class ReadWriteCon {
 
     public Employee getEmployeeByID(int id) {
         Employee employee = null;
-        try(Connection conn = RemoteConnection.getConn();
-            PreparedStatement statement = conn.prepareStatement(SELECT_USER_BY_ID)) {
+        Connection conn = RemoteConnection.getConn();
+        try {
+            PreparedStatement statement = conn.prepareStatement(SELECT_USER_BY_ID);
             statement.setInt(1,id);
             ResultSet rs = statement.executeQuery();
 
@@ -95,9 +96,9 @@ public class ReadWriteCon {
     }
     public void updateTable(HashMap<Integer,Employee> map){
 
-        try(Connection conn = RemoteConnection.getConn();
-            PreparedStatement statement = conn.prepareStatement(insertqueary)) {
-
+        try {
+            Connection conn = RemoteConnection.getConn();
+            PreparedStatement statement = conn.prepareStatement(insertqueary);
             for(Integer o: map.keySet()) {
 
                 statement.setInt(1, map.get(o).getEmployeeID());
@@ -108,7 +109,7 @@ public class ReadWriteCon {
                 statement.setString(6, String.valueOf(map.get(o).getGender()));
                 statement.setString(7, map.get(o).getEmail());
                 statement.setDate(8, new java.sql.Date(map.get(o).getDateOfBirth().getTime()));
-                statement.setDate(9, new java.sql.Date(map.get(o).getDateOfBirth().getTime()));
+                statement.setDate(9, new java.sql.Date(map.get(o).getDateOfJoining().getTime()));
                 statement.setInt(10, map.get(o).getSalary());
                 statement.executeUpdate();
 
@@ -116,6 +117,10 @@ public class ReadWriteCon {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void close() throws SQLException {
+        Connection conn = RemoteConnection.getConn();
+        conn.close();
     }
 }
 
