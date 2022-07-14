@@ -11,20 +11,26 @@ public class UserInterfaceView {
     Scanner scanner = new Scanner(System.in);
     public String display() {
         String fileName = "";
-        System.out.println("Would you like to create a new table? y to continue");
-        String choice = scanner.next();
+        boolean isValid = false;
 
-        if (choice.equals("y"))
-        {
-            readWrite.table();
+        while (!isValid) {
+            System.out.println("Would you like to create a new table? y to continue");
+            String choice = scanner.next();
 
-            System.out.println("Please enter a record you would like to be cleaned. 1, 2 or 3");
-            int record = scanner.nextInt();
+            if (choice.equals("y"))
+            {
+                readWrite.table(); // create fresh table
 
-            switch (record) {
-                case 1 -> fileName="src/main/resources/csv/EmployeeRecords1.csv";
-                case 2 -> fileName="src/main/resources/csv/EmployeeRecords2.csv";
-                case 3 -> fileName="src/main/resources/csv/EmployeeRecordsLarge.csv";
+                System.out.println("Please enter a record you would like to be cleaned. 1, 2 or 3");
+                int record = scanner.nextInt();
+
+                switch (record) {
+                    case 1 : fileName="src/main/resources/csv/EmployeeRecords1.csv";        isValid = true;  break;
+                    case 2 : fileName="src/main/resources/csv/EmployeeRecords2.csv";        isValid = true;  break;
+                    case 3 : fileName="src/main/resources/csv/EmployeeRecordsLarge.csv";    isValid = true;  break;
+                }
+            } else {
+                System.out.println("Invalid input. Please try again");
             }
         }
         return fileName;
