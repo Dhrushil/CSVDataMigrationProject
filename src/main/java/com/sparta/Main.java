@@ -17,6 +17,7 @@ public class Main {
         ReadWriteCon maincon = new ReadWriteCon();
         CleaningController clean = new CleaningController();
         UserInterfaceView ui = new UserInterfaceView();
+
         String fileName = ui.display();
         HashMap<Integer, Employee> test = clean.cleanFile(fileName);
         maincon.table();
