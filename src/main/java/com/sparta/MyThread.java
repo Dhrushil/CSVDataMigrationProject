@@ -11,7 +11,7 @@ import java.util.Iterator;
 public class MyThread extends Thread{
 
     //define the Total No.Of Threads needed
-    public static final int TOTAL_THREADS = 23;
+    public static final int TOTAL_THREADS = 55;
 
     public final static Object obj = new Object();
 
@@ -57,6 +57,7 @@ public class MyThread extends Thread{
                     //Display the output as desired
                    // String s = this.threadNo + " printing" + " " + counter++;
                     counter++;
+                    System.out.println(counter);
                     maincon.updateTableWithThreads(cMap.get(keyIterator.next()));
 
 
@@ -83,7 +84,7 @@ public class MyThread extends Thread{
 
 
         for(int i = 1; i<=MyThread.TOTAL_THREADS;i++){
-            MyThread th = new MyThread(i,"src/main/resources/csv/EmployeeRecords1.csv");
+            MyThread th = new MyThread(i,"src/main/resources/csv/EmployeeRecordsLarge.csv");
             th.start();
         }
     }

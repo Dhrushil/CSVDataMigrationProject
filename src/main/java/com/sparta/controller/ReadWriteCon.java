@@ -119,10 +119,10 @@ public class ReadWriteCon {
         }
     }
 
-    public void updateTableWithThreads(Employee employee){
+    public void updateTableWithThreads(Employee employee) {
 
         try {
-            Connection conn = RemoteConnection.getConn();
+            Connection conn =  RemoteConnection.getConn();
             PreparedStatement statement = conn.prepareStatement(insertqueary);
 
             statement.setInt(1, employee.getEmployeeID());
@@ -136,11 +136,14 @@ public class ReadWriteCon {
             statement.setDate(9, new java.sql.Date(employee.getDateOfJoining().getTime()));
             statement.setInt(10, employee.getSalary());
             statement.executeUpdate();
+            //conn.close();
 
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
     }
     public void close() throws SQLException {
         Connection conn = RemoteConnection.getConn();

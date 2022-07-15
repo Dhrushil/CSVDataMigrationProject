@@ -16,7 +16,7 @@ public class Main {
         //ui.updating(test);
         maincon.table();
         for(int i = 1; i<=MyThread.TOTAL_THREADS;i++){
-            MyThread th = new MyThread(i, "src/main/resources/csv/EmployeeRecords1.csv");
+            MyThread th = new MyThread(i, "src/main/resources/csv/EmployeeRecordsLarge.csv");
             th.start();
         }
 //        maincon.updateTable(test);

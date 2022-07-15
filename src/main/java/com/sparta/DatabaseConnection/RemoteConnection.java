@@ -2,6 +2,7 @@ package com.sparta.DatabaseConnection;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,8 +14,8 @@ public class RemoteConnection implements AutoCloseable {
 
     public static Connection getConn(){
         Properties dbprop = new Properties();
-        try {
-            dbprop.load(new FileReader("src/main/java/com/sparta/DatabaseConnection/database.properties"));
+        try(Reader inStream = new FileReader("src/main/java/com/sparta/DatabaseConnection/database.properties")) {
+            dbprop.load(inStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
