@@ -74,8 +74,17 @@ class TestClass {
         ReadWriteCon rWC = new ReadWriteCon();
         rWC.table();
         rWC.updateTable(testMap);
-        //Employee employee = rWC.getEmployeeByID(198429);
+        Employee employee = rWC.getEmployeeByID(198429);
 
-        //System.out.println(employee.getSalary());
+        Assertions.assertEquals("serafina.bumgarner@exxonmobil.com", employee.getEmail());
+        Assertions.assertEquals("1982-09-21", employee.getDateOfBirth().toString());
+        Assertions.assertEquals("Mrs.", employee.getNamePrefix());
+        Assertions.assertEquals("Serafina", employee.getFirstName());
+        Assertions.assertEquals('I', employee.getMiddleInitial());
+        Assertions.assertEquals("Bumgarner", employee.getLastName());
+        Assertions.assertEquals('F', employee.getGender());
+        Assertions.assertEquals(198429, employee.getEmployeeID());
+        Assertions.assertEquals(69294, employee.getSalary());
+        Assertions.assertEquals("2008-02-01", employee.getDateOfJoining().toString());
     }
 }
