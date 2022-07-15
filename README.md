@@ -78,3 +78,15 @@ This class controls the connection to the database (MySQL) and creates a connect
 ![img_12.png](img_12.png)
 
 This code persists employee records and write code to retrieve individual records from the database. By selecting every part of the employees details (such as ID, names, email addresses, gender, etc) ad then writing them to a file.
+
+# Phase 3:
+![img_13.png](img_13.png)
+![img_14.png](img_14.png)
+![img_15.png](img_15.png)
+Here is the main class for multithreading for writing the data to the database, comparing the execution time with the single-threaded version. By making multiple threads, the data can be sectioned and written or read at even faster intervals than with a single thread version. When tested it took 1 minute and 9 seconds before multi-threading was implemented. After it had been implemented (as shown above). Using 10 threads compared to 12 thread or 24 threads makes the code 7.8% faster, which is a considerable amount that the team is proud to have accomplished.
+
+# Phase 4:
+
+The use of prepared SQL statements and threading speeds up the database&#39;s ability to read and write. However, there are also hardware components that also have a say within the threads performance. For HDDs, there will always be a maximum thread limit that will no longer increase the speed of the database read and write ability. However, for SSDs, they are significantly faster and take up less disk usage.
+
+When tested it took 1 minute and 9 seconds before multi-threading was implemented. After it had been implemented (as shown above). Using 10 threads compared to 12 thread or 24 threads makes the code 7.8% faster, which is a considerable amount that the team is proud to have accomplished.
