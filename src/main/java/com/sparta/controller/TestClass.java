@@ -53,9 +53,9 @@ class TestClass {
     @Test
     void writeFile() {
 
-        HashMap<Integer, Employee> testMap = IOReader.readFile("src/main/resources/csv/EmployeeRecords1.csv");
+       HashMap<Integer, Employee> testMap = IOReader.readFile("src/main/resources/csv/EmployeeRecords1.csv");
         IOReader.writeFile("newTempFile.csv", testMap);
-        Assertions.assertTrue(new File("newTempFile.csv").isFile()); //check if new file exists
+       Assertions.assertTrue(new File("newTempFile.csv").isFile()); //check if new file exists
     }
 
     @Test

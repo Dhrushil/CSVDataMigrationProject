@@ -14,6 +14,8 @@ import java.util.List;
 public class IOReader {
 
     public static HashMap<Integer, Employee> readFile(String filename) {
+        Date dob;
+        Date doj;
         try {
             HashMap<Integer, Employee> map = new HashMap();
             List<String> ID = Files.lines(Path.of(filename))
@@ -65,12 +67,15 @@ public class IOReader {
 
             for(int i = 0; i < 11; ++i) {
                 map.put(Integer.parseInt(ID.get(i)), new Employee(Integer.parseInt(ID.get(i)), namePrefix.get(i), firstName.get(i), middleInitial.get(i).charAt(0),
-                        lastName.get(i), gender.get(i).charAt(0), email.get(i), (Date)dateOfBirth.get(i), (Date)dateOfJoining.get(i), Integer.parseInt(salary.get(i))));
+                        lastName.get(i), gender.get(i).charAt(0), email.get(i),dob = new SimpleDateFormat("MM/dd/yyyy").parse(dateOfBirth.get(i)),
+                        doj = new SimpleDateFormat("MM/dd/yyyy").parse(dateOfJoining.get(i)), Integer.parseInt(salary.get(i))));
             }
 
             return map;
         } catch (IOException var13) {
             throw new RuntimeException(var13);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
     /*public static HashMap<Integer, Employee> readFile(String filename) {
@@ -105,6 +110,8 @@ public class IOReader {
         }
         return file;
     }
+     */
+
     public static void writeFile(String filename, HashMap<Integer, Employee> hash){
         try {
             String line;
@@ -119,6 +126,6 @@ public class IOReader {
 
     }
 
-     */
+
 }
 
