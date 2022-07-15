@@ -2,14 +2,96 @@ package com.sparta.controller;
 
 import com.sparta.model.Employee;
 
+import java.awt.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class IOReader {
-    public static HashMap<Integer, Employee> readFile(String filename) {
+
+
+    public static HashMap<Integer,Employee> readFile(String filename){
+        try {
+            HashMap<Integer,Employee> map = new HashMap<Integer,Employee>();
+            List<String> ID = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[0])
+                    .toList();
+
+            List<String> namePrefix = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[1])
+                    .toList();
+            List<String> firstName = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[2])
+                    .toList();
+            List<String> middleInitial = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[3])
+                    .toList();
+            List<String> lastName = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[4])
+                    .toList();
+            List<String> gender = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[5])
+                    .toList();
+            List<String> email = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[6])
+                    .toList();
+            List<String> dateOfBirth = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[7])
+                    .toList();
+            List<String> dateOfJoining = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[8])
+                    .toList();
+            List<String> salary = Files.lines(Path.of(filename))
+                    .skip(1)
+                    .map(s -> s.split(",")[9])
+                    .toList();
+
+            for (int i=0; i<11;i++){
+                    map.put(ID.get(i),new Employee( Integer.parseInt(ID.get(i)), namePrefix.get(i),firstName.get(i), middleInitial.get(i).charAt(0),
+                            lastName.get(i),gender.get(i).charAt(0), email.get(i),Date dob = new SimpleDateFormat("MM/dd/yyyy").parse(dateOfBirth.get(i)), dateOfJoining.get(i),Integer.parseInt(salary.get(i))));
+
+                }
+            return map;
+
+
+
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* public static HashMap<Integer, Employee> readFile(String filename) {
 
         HashMap<Integer, Employee> file = new HashMap<>();
         try {
@@ -41,6 +123,8 @@ public class IOReader {
         }
         return file;
     }
+    */
+
     public static void writeFile(String filename, HashMap<Integer, Employee> hash){
         try {
             String line;

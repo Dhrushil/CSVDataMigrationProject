@@ -15,7 +15,7 @@ public class Main {
 
         ReadWriteCon maincon = new ReadWriteCon();
         CleaningController clean = new CleaningController();
-        HashMap<Integer, Employee> test = clean.cleanFile();
+        HashMap<Integer, Employee> test = clean.cleanFile("src/main/resources/csv/EmployeeRecords1.csv");
         maincon.table();
         maincon.updateTable(test);
     }
