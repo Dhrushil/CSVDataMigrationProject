@@ -20,7 +20,8 @@ public class Main {
 
         String fileName = ui.display();
         HashMap<Integer, Employee> test = clean.cleanFile(fileName);
-        maincon.table();
-        maincon.updateTable(test);
+        ui.updating(test);
+//        maincon.table();
+//        maincon.updateTable(test);
     }
 }
