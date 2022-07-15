@@ -65,7 +65,7 @@ public class IOReader {
                 return s.split(",")[9];
             }).toList();
 
-            for(int i = 0; i < 11; ++i) {
+            for(int i = 0; i < firstName.size(); ++i) {
                 map.put(Integer.parseInt(ID.get(i)), new Employee(Integer.parseInt(ID.get(i)), namePrefix.get(i), firstName.get(i), middleInitial.get(i).charAt(0),
                         lastName.get(i), gender.get(i).charAt(0), email.get(i),dob = new SimpleDateFormat("MM/dd/yyyy").parse(dateOfBirth.get(i)),
                         doj = new SimpleDateFormat("MM/dd/yyyy").parse(dateOfJoining.get(i)), Integer.parseInt(salary.get(i))));
