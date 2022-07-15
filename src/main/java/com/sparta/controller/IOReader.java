@@ -16,39 +16,56 @@ public class IOReader {
     public static HashMap<Integer, Employee> readFile(String filename) {
         try {
             HashMap<Integer, Employee> map = new HashMap();
-            List ID = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> ID = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[0];
             }).toList();
-            List namePrefix = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> namePrefix = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
                 return s.split(",")[1];
             }).toList();
-            List firstName = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> firstName = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[2];
             }).toList();
-            List middleInitial = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> middleInitial = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[3];
             }).toList();
-            List lastName = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> lastName = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[4];
             }).toList();
-            List gender = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> gender = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[5];
             }).toList();
-            List email = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> email = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[6];
             }).toList();
-            List dateOfBirth = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> dateOfBirth = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
                 return s.split(",")[7];
             }).toList();
-            List dateOfJoining = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> dateOfJoining = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[8];
             }).toList();
-            List salary = Files.lines(Path.of(filename)).skip(1L).map((s) -> {
+            List<String> salary = Files.lines(Path.of(filename))
+                    .skip(1L)
+                    .map((s) -> {
                 return s.split(",")[9];
             }).toList();
 
             for(int i = 0; i < 11; ++i) {
-                map.put((Integer)ID.get(i), new Employee((Integer)ID.get(i), (String)namePrefix.get(i), (String)firstName.get(i), (Character)middleInitial.get(i), (String)lastName.get(i), (Character)gender.get(i), (String)email.get(i), (Date)dateOfBirth.get(i), (Date)dateOfJoining.get(i), (Integer)salary.get(i)));
+                map.put(Integer.parseInt(ID.get(i)), new Employee(Integer.parseInt(ID.get(i)), namePrefix.get(i), firstName.get(i), middleInitial.get(i).charAt(0),
+                        lastName.get(i), gender.get(i).charAt(0), email.get(i), (Date)dateOfBirth.get(i), (Date)dateOfJoining.get(i), Integer.parseInt(salary.get(i))));
             }
 
             return map;
