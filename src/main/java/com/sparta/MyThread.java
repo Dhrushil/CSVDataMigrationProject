@@ -1,19 +1,17 @@
 package com.sparta;
 
 import com.sparta.controller.CleaningController;
-import com.sparta.controller.IOReader;
 import com.sparta.controller.ReadWriteCon;
 import com.sparta.model.Employee;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class MyThread extends Thread{
 
     //define the Total No.Of Threads needed
-    public static final int TOTAL_THREADS = 10;
+    public static final int TOTAL_THREADS = 23;
 
     public final static Object obj = new Object();
 
@@ -51,7 +49,7 @@ public class MyThread extends Thread{
         //in a synchronized block to acquire lock
         synchronized (obj) {
 
-            while(counter<=cMap.size()-100){
+            while(counter<=cMap.size()){
 
                 if(counter == threadNo || (counter%TOTAL_THREADS == threadNo) ||
                         ((counter%TOTAL_THREADS == 0) && (TOTAL_THREADS == threadNo))){
