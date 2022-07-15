@@ -44,7 +44,13 @@ public class UserInterfaceView {
 
     public HashMap<Integer, Employee> updating(HashMap<Integer, Employee> map) {
         System.out.println("Updating table...");
+
+        long start = System.currentTimeMillis();
         readWrite.updateTable(map);
+        long end = System.currentTimeMillis();
+        long totalTime = end - start;
+
+        System.out.println("Time taken: " + totalTime);
         return map;
     }
 }
