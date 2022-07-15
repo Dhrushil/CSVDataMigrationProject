@@ -118,6 +118,30 @@ public class ReadWriteCon {
             throw new RuntimeException(e);
         }
     }
+
+    public void updateTableWithThreads(Employee employee){
+
+        try {
+            Connection conn = RemoteConnection.getConn();
+            PreparedStatement statement = conn.prepareStatement(insertqueary);
+
+            statement.setInt(1, employee.getEmployeeID());
+            statement.setString(2, employee.getNamePrefix());
+            statement.setString(3, employee.getFirstName());
+            statement.setString(4, String.valueOf(employee.getMiddleInitial()));
+            statement.setString(5, employee.getLastName());
+            statement.setString(6, String.valueOf(employee.getGender()));
+            statement.setString(7, employee.getEmail());
+            statement.setDate(8, new java.sql.Date(employee.getDateOfBirth().getTime()));
+            statement.setDate(9, new java.sql.Date(employee.getDateOfJoining().getTime()));
+            statement.setInt(10, employee.getSalary());
+            statement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void close() throws SQLException {
         Connection conn = RemoteConnection.getConn();
         conn.close();
